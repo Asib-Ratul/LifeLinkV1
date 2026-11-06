@@ -95,7 +95,7 @@ export default function LiveQueueTrackerPage({ params }: { params: { id: string 
               <span className="text-5xl font-extrabold font-mono text-emerald-400 mt-2 block">
                 #{queue.nowServingSerial}
               </span>
-              <span className="text-[11px] text-emerald-300 font-semibold mt-1 block">In Doctor's Room</span>
+              <span className="text-[11px] text-emerald-300 font-semibold mt-1 block">In Doctor&apos;s Room</span>
             </div>
 
             <div className="text-center p-4 bg-teal-950/70 rounded-xl border border-teal-500/40">

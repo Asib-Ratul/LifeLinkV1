@@ -279,7 +279,7 @@ export const DirectionB_ModernHealthSaaS: React.FC = () => {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl font-bold text-[#0F172A]">Popular Specialties</h2>
-              <p className="text-xs text-[#64748B] mt-1">Quick access to Dhaka's top medical departments</p>
+              <p className="text-xs text-[#64748B] mt-1">Quick access to Dhaka&apos;s top medical departments</p>
             </div>
             <Link href="/doctors?view=departments" className="text-sm font-bold text-[#087E8B] hover:underline flex items-center gap-1">
               View All Departments <ChevronRight className="w-4 h-4" />

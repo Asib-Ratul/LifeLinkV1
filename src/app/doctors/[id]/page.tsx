@@ -83,7 +83,7 @@ export default function DoctorDetailPage({ params }: { params: { id: string } })
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-emerald-900 font-bold text-sm">
                 <Activity className="w-5 h-5 text-emerald-600 animate-pulse" />
-                <span>Today's Consultation Queue is RUNNING</span>
+                <span>Today&apos;s Consultation Queue is RUNNING</span>
               </div>
               <span className="bg-emerald-600 text-white text-xs px-2.5 py-0.5 rounded-full font-bold">
                 Live Chamber

@@ -37,7 +37,7 @@ export default function HospitalAdminPage() {
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-[#CBD5E1] shadow-sm space-y-2">
-              <span className="text-xs font-bold text-[#64748B]">Today's Total Patients</span>
+              <span className="text-xs font-bold text-[#64748B]">Today&apos;s Total Patients</span>
               <span className="text-3xl font-extrabold text-[#087E8B] font-mono block">420</span>
               <span className="text-xs text-[#64748B]">~12 mins average turn duration</span>
             </div>

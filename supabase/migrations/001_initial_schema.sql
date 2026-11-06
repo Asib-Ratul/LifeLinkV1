@@ -156,43 +156,6 @@ CREATE POLICY "Public Read Hospitals" ON public.hospitals FOR SELECT USING (true
 CREATE POLICY "Public Read Doctors" ON public.doctors FOR SELECT USING (true);
 CREATE POLICY "Public Read Doctor Schedules" ON public.doctor_schedules FOR SELECT USING (true);
 
--- User Profile RLS
-CREATE POLICY "Read own profile or public doc profiles" ON public.profiles FOR SELECT USING (true);
-CREATE POLICY "Update own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
-
--- Appointments RLS
-CREATE POLICY "Read own or assigned doctor appointments" ON public.appointments 
-    FOR SELECT USING (auth.uid() = patient_id OR auth.uid() IN (SELECT user_id FROM public.doctors WHERE id = doctor_id));
-
-CREATE POLICY "Patient create appointments" ON public.appointments 
-    FOR INSERT WITH CHECK (auth.uid() = patient_id);
-
-CREATE POLICY "Update appointments" ON public.appointments 
-    FOR UPDATE USING (auth.uid() = patient_id OR auth.uid() IN (SELECT user_id FROM public.doctors WHERE id = doctor_id));
-
--- Medical Records RLS (PRD V2: Doctors read only via active grant)
-CREATE POLICY "Read own medical records" ON public.medical_records 
-    FOR SELECT USING (auth.uid() = patient_id OR id IN (
-        SELECT mr.id FROM public.medical_records mr
-        JOIN public.record_access_grants rag ON mr.patient_id = rag.patient_id
-        WHERE rag.doctor_id IN (SELECT id FROM public.doctors WHERE user_id = auth.uid())
-        AND rag.expires_at > NOW()
-    ));
-
-CREATE POLICY "Patient insert medical records" ON public.medical_records 
-    FOR INSERT WITH CHECK (auth.uid() = patient_id);
-
--- Blood Requests RLS
-CREATE POLICY "Public read active blood requests" ON public.blood_requests FOR SELECT USING (true);
-CREATE POLICY "Authenticated user create blood request" ON public.blood_requests 
-    FOR INSERT WITH CHECK (auth.uid() = requester_id);
-
--- Blood Donor Responses RLS (Privacy consent boundary)
-CREATE POLICY "Donor or Requester read donor response" ON public.blood_donor_responses
-    FOR SELECT USING (
-        auth.uid() = donor_user_id OR 
-        auth.uid() IN (SELECT requester_id FROM public.blood_requests WHERE id = request_id)
-    );
-
-CREATE POLICY "Donor insert response" ON public.blood_donor_responses 
-    FOR INSERT WITH CHECK (auth.uid() = donor_user_id);
+-- Sensitive application tables intentionally have no policies in the schema migration.
+-- Apply 002_security_hardening.sql to add the reviewed role-specific policies.
+-- RLS with no applicable policy denies access by default.

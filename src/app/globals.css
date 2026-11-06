@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #087E8B;
+  --primary-dark: #075E66;
+  --primary-light: #E8F6F7;
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --success: #16A34A;
+  --success-bg: #F0FDF4;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+  --danger: #DC2626;
+  --danger-bg: #FEF2F2;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--background);
+  font-family: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep the demo's focus state visible for keyboard users. */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
